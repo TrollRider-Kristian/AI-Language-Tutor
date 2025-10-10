@@ -1,12 +1,16 @@
 from prompt_engineer_dataset_creator import create_topic_list_from_prompt #, test_prompts_on_console
-from flask import Flask
+from flask import Flask, render_template
 import ollama
 # from huggingface_attempt import run_huggingface_model # KRISTIAN_TODO - Why does it segfault?
 app = Flask(__name__)
 
-@app.route('/')
+# @app.route('/')
+# def index():
+#     return 'placeholder'
+
+@app.route('/', methods = ['GET', 'POST'])
 def index():
-    return create_topic_list_from_prompt (ollama.Client(), "llama3.1").response
+    return render_template('index.html')
 
 def main():
     # test_prompts_on_console()
